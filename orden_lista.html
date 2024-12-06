@@ -17,6 +17,48 @@ height: auto;
 z-index: 100;
 ">
 
+<script>
+    const ws = new WebSocket('ws://localhost:8080'); // Cambia 'localhost' por la IP del servidor si es remoto.
+
+    // Conexión establecida
+    ws.onopen = () => {
+        console.log('Conectado al servidor WebSocket.');
+    };
+
+    // Recibir mensajes
+    ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        console.log('Datos recibidos:', data);
+
+        if (data.type === 'update') {
+            updateOrderList(data.orders);
+        }
+    };
+
+    // Enviar datos al servidor
+    function sendUpdate(type, payload) {
+        const message = JSON.stringify({
+            type,
+            ...payload
+        });
+        ws.send(message);
+    }
+
+    // Ejemplo: Enviar un nuevo pedido
+    function addOrder(folio, nombre) {
+        sendUpdate('newOrder', {
+            folio,
+            nombre
+        });
+    }
+
+    // Función para actualizar la lista de órdenes (implementar según tu diseño)
+    function updateOrderList(orders) {
+        // Aquí actualiza la lista de órdenes en la interfaz del cliente
+    }
+</script>
+
+
 <body>
     <!-- Logo en la esquina superior derecha -->
     <img src="images/logo en negro.jpg" alt="Logo Amareto's" class="logo">
