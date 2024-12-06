@@ -162,3 +162,61 @@ h6 {
         transform: translateY(8);
     }
 }
+
+
+/* Estilo general para dispositivos con un ancho máximo de 768px */
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    header {
+        flex-direction: column;
+        /* Cambia el logo y título a un formato vertical */
+        text-align: center;
+    }
+    .logo {
+        width: 100px;
+        /* Ajusta el tamaño del logo en pantallas pequeñas */
+        margin-bottom: 10px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .form-container {
+        flex-direction: column;
+        /* Coloca los inputs y botón uno debajo del otro */
+        gap: 0.5rem;
+    }
+    input,
+    button {
+        width: 100%;
+        /* Los inputs y botones ocuparán todo el ancho del contenedor */
+        font-size: 1rem;
+    }
+    .order-list {
+        width: 100%;
+        /* Asegúrate de que la lista ocupe todo el ancho en móviles */
+    }
+    .order-item {
+        font-size: 1rem;
+        /* Ajusta el tamaño del texto de las órdenes */
+        flex-direction: column;
+        /* Cambia el diseño a formato vertical */
+        align-items: flex-start;
+    }
+    .bottom-right-image {
+        width: 100px;
+        /* Reduce el tamaño de la imagen decorativa */
+    }
+    .nav-link a {
+        font-size: 1rem;
+        /* Ajusta el tamaño del enlace de navegación */
+    }
+    .controls button {
+        font-size: 1rem;
+        /* Botones más pequeños */
+        padding: 0.5rem;
+    }
+}
