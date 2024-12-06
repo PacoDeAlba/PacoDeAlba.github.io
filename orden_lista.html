@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden Lista</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<img src="images/Pizza peperoni 1-4.png" alt="Imagen de ejemplo" style="
+position: fixed; 
+bottom: 10px; 
+right: 10px; 
+width: 300px; 
+height: auto; 
+z-index: 100;
+">
+
+<body>
+    <!-- Logo en la esquina superior derecha -->
+    <img src="images/logo en negro.jpg" alt="Logo Amareto's" class="logo">
+
+    <h1>Ordenes listas</h1>
+
+    <h2>Si ves tu nombre y folio aquí, acércate al mostrador. ¡Tu pedido ya está listo!</h2>
+
+    <div class="order-list" id="orderList">
+        <!-- Contenedor de la imagen -->
+        <div class="image-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg" alt="Pizza">
+        </div>
+        <!-- Aquí se mostrarán las órdenes -->
+    </div>
+
+    <!-- Imagen decorativa en la esquina inferior derecha -->
+    <img src="images/logo en negro.jpg" alt="Imagen de ejemplo" style="
+        position: fixed; 
+        bottom: 10px; 
+        left: 10px; 
+        width: 400px; 
+        height: auto; 
+        z-index: 100;
+    ">
+
+    <div class="nav-link">
+        <a href="index.html">----</a>
+    </div>
+
+    <script>
+        const orderList = document.getElementById("orderList");
+
+        const renderOrders = () => {
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orderList.innerHTML = "";
+            orders
+                .filter(order => !order.checked) // Filtrar las órdenes que no están seleccionadas
+                .forEach(order => {
+                    const orderItem = document.createElement("div");
+                    orderItem.classList.add("order-item");
+                    orderItem.textContent = `Folio: ${order.folio}, Cliente: ${order.nombre}`;
+                    orderList.appendChild(orderItem);
+                });
+        };
+
+        // Escuchar cambios en el almacenamiento local
+        window.addEventListener("storage", renderOrders);
+        renderOrders();
+    </script>
+    <h5>!Gacias por su preferencia!</h5>
+    <h6>Amareto's Pizza Siempre recien hechas</h6>
+</body>
+
+</html>
