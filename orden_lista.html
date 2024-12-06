@@ -108,7 +108,28 @@ z-index: 100;
         // Escuchar cambios en el almacenamiento local
         window.addEventListener("storage", renderOrders);
         renderOrders();
+        document.getElementById('fullscreen-btn').addEventListener('click', () => {
+            const element = document.documentElement; // Selecciona el documento completo
+
+            if (element.requestFullscreen) {
+                element.requestFullscreen(); // Activa pantalla completa en navegadores modernos
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen(); // Firefox
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen(); // Safari
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen(); // Internet Explorer/Edge
+            }
+        });
+
+        // Detectar cuándo se sale del modo de pantalla completa
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                console.log('Se ha salido del modo pantalla completa.');
+            }
+        });
     </script>
+    <button id="fullscreen-btn">Pantalla Completa</button>
     <h5>!Gacias por su preferencia!</h5>
     <h6>Amareto's Pizza Siempre recien hechas</h6>
 </body>
